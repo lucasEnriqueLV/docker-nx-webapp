@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/simple-app",
+  "sourceRoot": "apps/simple-app/src",
+  "prefix": "projects",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/simple-app",
+        "index": "apps/simple-app/src/index.html",
+        "main": "apps/simple-app/src/main.ts",
+        "polyfills": "apps/simple-app/src/polyfills.ts",
+        "tsConfig": "apps/simple-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/simple-app/src/favicon.ico",
+          "apps/simple-app/src/assets"
+        ],
+        "styles": ["apps/simple-app/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/simple-app/src/environments/environment.ts",
+              "with": "apps/simple-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "simple-app:build:production"
+        },
+        "development": {
+          "browserTarget": "simple-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "simple-app:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/simple-app/src/**/*.ts",
+          "apps/simple-app/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/simple-app"],
+      "options": {
+        "jestConfig": "apps/simple-app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

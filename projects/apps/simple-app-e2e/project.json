@@ -1,0 +1,28 @@
+{
+  "root": "apps/simple-app-e2e",
+  "sourceRoot": "apps/simple-app-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/simple-app-e2e/cypress.json",
+        "devServerTarget": "simple-app:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "simple-app:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/simple-app-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["simple-app"]
+}
