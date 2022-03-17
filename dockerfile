@@ -7,14 +7,14 @@ FROM node:current-alpine3.15 as builder
 WORKDIR /usr/local/app
 
 # Add the source code to app
-COPY ./ /usr/local/app/
+COPY ./projects /usr/local/app/
 
 # Install all the dependencies
 RUN npm install
 
 # Generate the build of the application
 RUN npm run build
-
+ 
 
 # Stage 2: Serve app with nginx server
 
@@ -23,7 +23,7 @@ FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=builder /usr/local/app/dist/apps/simple-app /var/www
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./projects/nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 3000
 EXPOSE 3000
