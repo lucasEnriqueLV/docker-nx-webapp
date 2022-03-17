@@ -7,10 +7,12 @@ FROM node:current-alpine3.15
 WORKDIR /usr/local/app
 
 # Add the source code to app
-COPY ./projects /usr/local/app/
+COPY projects/package.json projects/package-lock.json ./
 
 # Install all the dependencies
 RUN npm install
+
+COPY . .
 
 # Generate the build of the application
 # RUN npm run build
@@ -27,7 +29,5 @@ RUN npm install
 
 # # Expose port 4201
 EXPOSE 4201
-
-RUN npm start 
 
 # ENTRYPOINT ["nginx","-g", "daemon off;"]
