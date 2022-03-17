@@ -1,16 +1,19 @@
 # Stage 1: Compile and Build angular codebase
 
-# Use official node image as the base image
-FROM node:current-alpine3.15
+# Use official cypress image as the base image
+FROM cypress/base:16.13.0
 
 # Set the working directory
 WORKDIR /usr/local/app
 
 # Add the source code to app
 COPY projects/package.json projects/package-lock.json ./
+COPY projects/decorate-angular-cli.js ./
+CMD ["chmod", "666", "/var/run/docker.sock"]
 
 # Install all the dependencies
-RUN npm install
+# Angular system
+RUN npm install -g @angular/cli@13.3.0
 
 COPY . .
 
@@ -29,5 +32,7 @@ COPY . .
 
 # # Expose port 4201
 EXPOSE 4201
+
+USER node
 
 # ENTRYPOINT ["nginx","-g", "daemon off;"]

@@ -7,7 +7,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve --port 4201",
     "build": "nx build",
-    "test": "nx test"
+    "test": "ng run simple-app-e2e:e2e"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +29,7 @@
     "@angular-eslint/eslint-plugin": "~13.0.1",
     "@angular-eslint/eslint-plugin-template": "~13.0.1",
     "@angular-eslint/template-parser": "~13.0.1",
-    "@angular/cli": "~13.2.0",
+    "@angular/cli": "^13.3.0",
     "@angular/compiler-cli": "~13.2.0",
     "@angular/language-service": "~13.2.0",
     "@nrwl/cypress": "13.9.1",
