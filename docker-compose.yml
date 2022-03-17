@@ -13,6 +13,7 @@ services:
   angular:
     build:
       context: "projects/"
+      dockerfile: Dockerfile
     image: simple-app
     container_name: simple-app
     env_file:
