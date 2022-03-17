@@ -1,7 +1,7 @@
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
-FROM node:current-alpine3.15 as builder
+FROM node:current-alpine3.15
 
 # Set the working directory
 WORKDIR /usr/local/app
@@ -13,19 +13,21 @@ COPY ./projects /usr/local/app/
 RUN npm install
 
 # Generate the build of the application
-RUN npm run build
+# RUN npm run build
  
 
-# Stage 2: Serve app with nginx server
+# # Stage 2: Serve app with nginx server
 
-# Use official nginx image as the base image
-FROM nginx:latest
+# # Use official nginx image as the base image
+# FROM nginx:latest
 
-# Copy the build output to replace the default nginx contents.
-COPY --from=builder /usr/local/app/dist/apps/simple-app /var/www
-COPY ./projects/nginx.conf /etc/nginx/nginx.conf
+# # Copy the build output to replace the default nginx contents.
+# COPY --from=builder /usr/local/app/dist/apps/simple-app /var/www
+# COPY ./projects/nginx.conf /etc/nginx/nginx.conf
 
-# Expose port 3000
-EXPOSE 3000
+# # Expose port 4201
+EXPOSE 4201
 
-ENTRYPOINT ["nginx","-g", "daemon off;"]
+RUN npm start 
+
+# ENTRYPOINT ["nginx","-g", "daemon off;"]
