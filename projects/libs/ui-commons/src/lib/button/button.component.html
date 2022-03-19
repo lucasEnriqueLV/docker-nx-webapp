@@ -1,4 +1,8 @@
 <div class="button-addOne">
     <button id=buttonClickMe (click)="addOnClick()">add one</button>
-    <div class="number"> {{ this.addOne }} </div>
+    <div class="box-container">
+        <ng-container *ngFor="let box of boxes">
+            <div class="box"> {{ box.number }} </div>
+        </ng-container>
+    </div>
 </div>

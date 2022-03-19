@@ -1,6 +1,18 @@
 .button-addOne {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #buttonClickMe {
-    margin-right: 10px
+    margin-bottom: 5px;
+    width: 65px;
+}
+.box-container {
+    display: flex;
+    justify-content: center;
+}
+.box {
+    margin: 0px 2px;
+    border: solid black 1px;
+    padding: 0px 4px;
 }
