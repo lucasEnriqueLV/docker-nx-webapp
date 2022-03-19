@@ -3,23 +3,15 @@
 # Use official cypress image as the base image
 FROM cypress/base:16.14.0-slim
 
-WORKDIR /usr/src/app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH node_modules/.bin:$PATH
+WORKDIR /usr/src/app/
 
 # install and cache app dependencies
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 COPY decorate-angular-cli.js ./
 
-WORKDIR /usr/src/app/projects
-
-# Install all the dependencies
-# Angular system
-
-# Generate the build of the application
-# RUN ng serve --port 4201
- 
+RUN npm install -g @angular/cli@13.3.0
+RUN npm install -g nx
 
 # # Stage 2: Serve app with nginx server
 

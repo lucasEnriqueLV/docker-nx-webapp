@@ -12,7 +12,6 @@ war/
 *.jar
 *.jpi
 *.jpi.pinned
-*.json
 
 /.ssh
 /secret.key*
@@ -51,3 +50,6 @@ modules/
 /.sbt/
 
 /.cache
+
+/node_modules
+/dist
