@@ -4,12 +4,12 @@ pipeline {
 	stages {
 		stage("build dependencies") {
 			steps {
-				sh "npm i"
+				sh "npm ci"
 			}
 		}
 		stage("unit test") {
 			steps {
-				sh "ng run simple-app-e2e:e2e"
+				sh "nx run simple-app-e2e:e2e"
 			}
 		}
 	}
