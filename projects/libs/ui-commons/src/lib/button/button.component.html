@@ -2,7 +2,7 @@
     <button id=buttonClickMe (click)="addOnClick()">add one</button>
     <div class="box-container">
         <ng-container *ngFor="let box of boxes">
-            <div class="box"> {{ box.number }} </div>
+            <div class="box" value="box.number"> {{ box.number }} </div>
         </ng-container>
     </div>
 </div>
