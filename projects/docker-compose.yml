@@ -11,10 +11,10 @@ services:
   #     - 3000:3000
 
   angular:
-    build: .
-    image: simple-app
-    container_name: simple-app
-    env_file:
-      - "./projects/.env"
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 4201:4201
+    volumes:
+      - /var/run/docker.sock

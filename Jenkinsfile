@@ -1,13 +1,20 @@
 pipeline {
-	agent { dockerfile true }
+	agent { 
+		dockerfile {
+			filename 'Dockerfile'
+			dir 'projects'
+		}
+	}
 	stages {
-		// stage("install dependencies") {
-		// 	steps {
-		// 		dir("projects") {
-		// 			sh "npm i"
-		// 		}
-        //     }
-		// }
+		stage("install dependencies") {
+			steps {
+				dir("projects") {
+					sh "npm install -g @angular/cli@13.3.0"
+					sh "npm install -g nx"
+					sh "npm i"
+				}
+            }
+		}
 		stage("unit test") {
 			steps {
 				sh "ng run simple-app-e2e:e2e"

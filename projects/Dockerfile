@@ -1,30 +1,24 @@
 # Stage 1: Compile and Build angular codebase
 
 # Use official cypress image as the base image
-FROM cypress/base:16.13.0
+FROM cypress/base:16.14.0-slim
 
-# Set the working directory
-WORKDIR /usr/local/app
+WORKDIR /usr/src/app
 
-# Add the source code to app
-COPY projects/package.json projects/package-lock.json ./
-COPY projects/decorate-angular-cli.js ./
-CMD ["chmod", "666", "/var/run/docker.sock"]
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH node_modules/.bin:$PATH
+
+# install and cache app dependencies
+COPY package*.json ./
+COPY decorate-angular-cli.js ./
+
+WORKDIR /usr/src/app/projects
 
 # Install all the dependencies
 # Angular system
 
-WORKDIR /usr/local/app/projects
-
-RUN npm install -g @angular/cli@13.3.0
-RUN npm install -g nx
-
-RUN npm i
-
-COPY . .
-
 # Generate the build of the application
-# RUN npm run build
+# RUN ng serve --port 4201
  
 
 # # Stage 2: Serve app with nginx server
