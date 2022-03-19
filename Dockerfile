@@ -13,7 +13,13 @@ CMD ["chmod", "666", "/var/run/docker.sock"]
 
 # Install all the dependencies
 # Angular system
+
+WORKDIR /usr/local/app/projects
+
 RUN npm install -g @angular/cli@13.3.0
+RUN npm install -g nx
+
+RUN npm i
 
 COPY . .
 
@@ -32,7 +38,5 @@ COPY . .
 
 # # Expose port 4201
 EXPOSE 4201
-
-USER node
 
 # ENTRYPOINT ["nginx","-g", "daemon off;"]

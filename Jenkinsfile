@@ -1,18 +1,16 @@
 pipeline {
 	agent { dockerfile true }
 	stages {
-		stage("install dependencies") {
-			steps {
-				dir("projects") {
-					sh "npm i"
-				}
-            }
-		}
+		// stage("install dependencies") {
+		// 	steps {
+		// 		dir("projects") {
+		// 			sh "npm i"
+		// 		}
+        //     }
+		// }
 		stage("unit test") {
 			steps {
-				dir("projects") {
-					sh "ng run simple-app-e2e:e2e"
-				}
+				sh "ng run simple-app-e2e:e2e"
 			}
 		}
 
