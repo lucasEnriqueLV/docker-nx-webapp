@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "simple-app": "apps/simple-app",
-    "simple-app-e2e": "apps/simple-app-e2e"
+    "simple-app-e2e": "apps/simple-app-e2e",
+    "ui-commons": "libs/ui-commons"
   }
 }
