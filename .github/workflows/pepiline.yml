@@ -40,10 +40,10 @@ jobs:
       - name: Derive appropiate SHAs for base and head for nx affected
         uses: nrwl/nx-set-shas@v2
         
-      - name: Rodando Lint
-        run: yarn affected lint --parallel
+      - name: Lint Nx workspace
+        run: yarn nx workspace-lint
         
-      - name: Rodando Testes
-        run: yarn affected teste --parallel
+      - name: 'Lint workspace and affected projects'
+        run: yarn affected:lint
         
   
