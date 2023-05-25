@@ -3,7 +3,7 @@ name: Pipeline CI/CD - push para o origin
 on:
   push:
     branches:
-      'devops'
+      'master'
 
 jobs:
   setup:
