@@ -8,42 +8,13 @@ on:
 jobs:
   setup:
     name: Testando aplicação e criando artefato
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    outputs:
-      affected-apps: ${{steps.get-affected-apps.outputs.affected_apps}}
+    runs-on: ubuntu-latest   
     steps:
-      - uses: actions/checkout@v2
+      - name: Gerando o artefato
+        uses: actions/upload-artifact@v2
         with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: '^16'
-          checklist-latest: true
-      - name: Recebendo cache do yarn
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+          name: app-artefato
+          path: ProjetoCI_CD_TCC_2023\apps\simple-app
         
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{steps.yarn-cache-dir-path.outputs.dir}}
-          key: ${{runner.os}}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys:
-            ${{ runner.os }}-yarn-
-       
-     
-      - name: Instalando dependencias
-        run: yarn install 
-        
-      - name: Derive appropiate SHAs for base and head for nx affected
-        uses: nrwl/nx-set-shas@v2
-        
-      - name: Rodando Lint
-        run: yarn affected:lint 
-        
-      - name: Rodando Testes
-        run: yarn affected:test 
         
   
