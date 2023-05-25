@@ -41,9 +41,9 @@ jobs:
         uses: nrwl/nx-set-shas@v2
         
       - name: Rodando Lint
-        run: yarn affected:lint --parallel
+        run: yarn affected:lint 
         
       - name: Rodando Testes
-        run: yarn affected:test --parallel
+        run: yarn affected:test 
         
   
