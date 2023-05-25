@@ -1,1 +1,23 @@
+name: Pipeline CI/CD - push para o origin/devops
 
+on:
+  push:
+    branches:
+      'devops'
+
+jobs:
+  setup:
+    name: Testando aplicação e criando artefato
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      affected_apps: ${{steps.get-affected-apps.outputs.affected_apps}}
+    steps:
+      -uses: actions/checkout@v2
+       with:
+        fetch-depth: 0
+
+      -uses:
+       with:
+        node-version: '12'
+        checklist-latest: true
