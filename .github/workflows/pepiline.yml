@@ -9,9 +9,6 @@ jobs:
   setup:
     name: Testando aplicação e criando artefato
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    outputs:
-      affected_apps: ${{steps.get-affected-apps.outputs.affected_apps}}
     steps:
       - uses: actions/checkout@v2
         with:
