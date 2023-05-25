@@ -1,4 +1,4 @@
-name: Pipeline CI/CD - push para o origin/devops
+name: Pipeline CI/CD - push para o origin
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses:
-        with:
-          node-version: '12'
-          checklist-latest: true
+      -uses:
+       with:
+        node-version: '12'
+        checklist-latest: true
