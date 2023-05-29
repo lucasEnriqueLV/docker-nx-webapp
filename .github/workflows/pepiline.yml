@@ -10,11 +10,19 @@ jobs:
     name: Testando aplicação e criando artefato
     runs-on: ubuntu-latest   
     steps:
-      - name: Gerando o artefato
-        uses: actions/upload-artifact@v2
+      - name: actions/checkout@v3
         with:
-          name: app-artefato
-          path: /.gitignore
-        
+          fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/actions-setup@v2.2.1
+        with:
+          version: "7.x"
+      - name: Inatlando Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          cache: "pnpm"
+          
+    
         
   
