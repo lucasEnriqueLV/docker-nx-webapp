@@ -25,6 +25,9 @@ jobs:
       
     - name: Instalando Dependencias
       run: pnpm install
+      
+    - name: Buildando projeto
+      run: pnpm run build:all
         
     
         
