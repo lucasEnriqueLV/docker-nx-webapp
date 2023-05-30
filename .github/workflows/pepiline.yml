@@ -32,6 +32,12 @@ jobs:
     - name: Publicando o projeto
       run: pnpm -r publish --no-git-checks
       
+    - name: artefato
+      uses: actions/upload-artfact@v2
+      with:
+        name: artefato1-app
+        path: dist/apps/simple-app
+      
         
     
         
