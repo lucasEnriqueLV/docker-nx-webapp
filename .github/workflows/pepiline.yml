@@ -30,9 +30,8 @@ jobs:
       run: pnpm run build:simple-app
       
     - name: Publicando o projeto
-      run: pnpm -r publish --no-git-checks
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN}}
+      run: pnpm --filter=simple-app deploy --no-git-checks
+      
         
     
         
