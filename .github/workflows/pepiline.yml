@@ -30,7 +30,7 @@ jobs:
       run: pnpm run build:simple-app
       
     - name: Publicando o projeto
-      run: pnpm deploy 
+      run: pnpm --filter="apps/simple-app" deploy 
       
         
     
