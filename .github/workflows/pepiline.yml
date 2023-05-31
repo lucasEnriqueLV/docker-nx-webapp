@@ -82,8 +82,13 @@ jobs:
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
           template: bicep-template/template.bicep
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
-          failOnStdErr: false   
-               
+          failOnStdErr: false 
+      - name: Publish Website to WebApp
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.WEBAPP-NAME  }}
+          package: artefato1-app  
+                
 
         
     
