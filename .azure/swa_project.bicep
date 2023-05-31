@@ -1,4 +1,4 @@
-param name string = uniqueString(resourceGroup().id)
+param name string = 'meusiteangular'
 param location string = resourceGroup().location
 param sku string = 'Free'
 
