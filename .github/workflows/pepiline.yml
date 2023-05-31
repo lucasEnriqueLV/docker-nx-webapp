@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: artefato1-app
-        path: dist/apps/simple-app
+        path: dist
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: artefato1-app
-          path: dist/apps/simple-app
+          path: dist
 
       - name: Azure Login
         uses: azure/login@v1
