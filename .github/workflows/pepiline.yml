@@ -7,7 +7,7 @@ on:
 env:
   RESOURCE-GROUP: RGPROJETOTCC2023
   LOCATION: eastus2
-  TEMPLATE-FILE: .azure/template.bicep
+  TEMPLATE-FILE: .azure/swa_project.bicep
   SUBSCRIPTION-ID: 9157087b-28a6-4c6b-a615-c827504e377a
   WEBAPP-NAME: projeto-tcc-2023
 
@@ -38,7 +38,7 @@ jobs:
     - name: Publicando o projeto
       run: pnpm -r publish --no-git-checks
       
-    - name: artefato
+    - name: artefato 
       uses: actions/upload-artifact@v2
       with:
         name: artefato1-app
@@ -75,19 +75,29 @@ jobs:
         with:
           creds: ${{ secrets.PROJETO_TCC_SECRETS}}
 
+      # - name: deploy
+      #   uses: azure/arm-deploy@v1
+      #   with:
+      #     subscriptionId: ${{ env.SUBSCRIPTION-ID }}
+      #     resourceGroupName: ${{ env.RESOURCE-GROUP }}
+      #     template: bicep-template/template.bicep
+      #     parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+      #     failOnStdErr: false 
+
       - name: deploy
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          template: bicep-template/template.bicep
-          parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+          template: bicep-template/swa_project.bicep
+          parameters: 'name=${{ env.WEBAPP-NAME }}'
           failOnStdErr: false 
-      - name: Publish Website to WebApp
-        uses: Azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.WEBAPP-NAME  }}
-          package: artefato1-app  
+
+      # - name: Publish Website to WebApp
+      #   uses: Azure/webapps-deploy@v2
+      #   with:
+      #     app-name: ${{ env.WEBAPP-NAME  }}
+      #     package: artefato1-app  
                 
 
         
