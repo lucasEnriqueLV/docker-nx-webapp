@@ -49,6 +49,27 @@ jobs:
       with:
         name: bicep-template
         path: ${{ env.TEMPLATE-FILE }}
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+        
+      #Download do arquivo bicep
+      - name: Download artifato template bicep
+        uses: actions/download-artifact@v3
+        with:
+          name: bicep-template
+          path: bicep-template
+
+      #Download do arquivo bicep
+      - name: Download artifato app
+        uses: actions/download-artifact@v3
+        with:
+          name: artefato1-app
+          path: dist/apps/simple-app
+
 
         
     
