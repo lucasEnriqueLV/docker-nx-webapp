@@ -70,6 +70,20 @@ jobs:
           name: artefato1-app
           path: dist/apps/simple-app
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.PROJETO_TCC_SECRETS}}
+
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ env.SUBSCRIPTION-ID }}
+          resourceGroupName: ${{ env.RESOURCE-GROUP }}
+          template: bicep-template/web.bicep
+          parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+          failOnStdErr: false   
+               
 
         
     
