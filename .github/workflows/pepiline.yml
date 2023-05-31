@@ -90,7 +90,6 @@ jobs:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
           template: bicep-template/swa_project.bicep
-          parameters: 'name=${{ env.WEBAPP-NAME }}'
           failOnStdErr: false 
 
       # - name: Publish Website to WebApp
