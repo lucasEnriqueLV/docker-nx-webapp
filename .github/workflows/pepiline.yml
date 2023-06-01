@@ -7,7 +7,7 @@ on:
 env:
   RESOURCE-GROUP: RGPROJETOTCC2023
   LOCATION: eastus2
-  TEMPLATE-FILE: .azure/swa_project.bicep
+  TEMPLATE-FILE: .azure/acr_project.bicep
   SUBSCRIPTION-ID: 9157087b-28a6-4c6b-a615-c827504e377a
   WEBAPP-NAME: projeto-tcc-2023
 
