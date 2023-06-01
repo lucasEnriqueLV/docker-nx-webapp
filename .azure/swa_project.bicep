@@ -12,7 +12,7 @@ resource swa_resource 'Microsoft.Web/staticSites@2021-01-15' = {
       buildProperties: {
         appLocation: './'
         apiLocation: './api'
-        outputLocation: './output'
+        outputLocation: './dist'
         }
     }
     sku: {
