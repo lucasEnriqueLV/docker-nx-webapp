@@ -90,7 +90,16 @@ jobs:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
           template: bicep-template/acr_project.bicep
-          failOnStdErr: false 
+          failOnStdErr: false
+          
+      - name: Azure PowerShell Action
+        uses: Azure/powershell@v1
+        with:
+    # Specify the Az PowerShell script here.
+          inlineScript: 
+            $var=ConvertFrom-Json '$(outputJson)'
+            $value=$var.acrLoginServer.value
+            Write-Host "##vso[task.setvariable variable=acrLoginServer;]$value"
 
       # - name: Publish Website to WebApp
       #   uses: Azure/webapps-deploy@v2
