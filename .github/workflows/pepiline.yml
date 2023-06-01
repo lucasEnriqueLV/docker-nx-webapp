@@ -100,6 +100,8 @@ jobs:
             $var=ConvertFrom-Json '$(outputJson)'
             $value=$var.acrLoginServer.value
             Write-Host "##vso[task.setvariable variable=acrLoginServer;]$value"
+          azPSVersion: "latest"
+            
 
       # - name: Publish Website to WebApp
       #   uses: Azure/webapps-deploy@v2
