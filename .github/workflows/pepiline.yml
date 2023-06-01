@@ -98,7 +98,8 @@ jobs:
         with:
     # Specify the Az PowerShell script here.
           inlineScript: |
-            $var=ConvertFrom-Json '$(outputJson)' $value=$var.acrLoginServer.value  Write-Host "##vso[task.setvariable variable=acrLoginServer;]$value"
+            az acr login --name acrd4etdvvsgalrs |
+            az acr show --name acrd4etdvvsgalrs --query loginServer --output table --subscription  ${{ env.SUBSCRIPTION-ID }}
           azPSVersion: "latest"
             
 
