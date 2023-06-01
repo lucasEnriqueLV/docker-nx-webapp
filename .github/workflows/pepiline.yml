@@ -91,6 +91,7 @@ jobs:
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
           template: bicep-template/acr_project.bicep
           failOnStdErr: false
+          deploymentOutputs: 'outputJson'
           
       - name: Azure PowerShell Action
         uses: Azure/powershell@v1
