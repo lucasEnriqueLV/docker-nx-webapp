@@ -101,6 +101,13 @@ jobs:
             az acr login --name acrd4etdvvsgalrs |
             az acr show --name acrd4etdvvsgalrs --query loginServer --output table --subscription  ${{ env.SUBSCRIPTION-ID }}
           azPSVersion: "latest"
+          
+      - name: Build the frontend image and push it to ACR
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: acrd4etdvvsgalrs.azurecr.io/teste:${{ github.sha }}
+          file: ./Dockerfile
             
 
       # - name: Publish Website to WebApp
