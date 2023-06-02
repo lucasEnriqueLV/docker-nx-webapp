@@ -7,7 +7,8 @@ on:
 env:
   RESOURCE-GROUP: RGPROJETOTCC2023
   LOCATION: eastus2
-  TEMPLATE-FILE: .azure/acr_project.bicep
+  TEMPLATE-FILE: .azure/template.bicep
+  TEMPLATE-FILE-ACR: .azure/acr_project.bicep
   SUBSCRIPTION-ID: 9157087b-28a6-4c6b-a615-c827504e377a
   WEBAPP-NAME: projeto-tcc-2023
 
@@ -32,23 +33,23 @@ jobs:
     - name: Instalando Dependencias
       run: pnpm install
       
-    - name: Buildando projeto
-      run: pnpm run build:all
+#     - name: Buildando projeto
+#       run: pnpm run build:all
       
-    - name: Publicando o projeto
-      run: pnpm -r publish --no-git-checks
+#     - name: Publicando o projeto
+#       run: pnpm -r publish --no-git-checks
       
-    - name: artefato 
+    - name: artefato webapp
       uses: actions/upload-artifact@v2
       with:
-        name: artefato1-app
-        path: dist
+        name: artefato-app
+        path:  ${{ env.TEMPLATE-FILE }}
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
         name: bicep-template
-        path: ${{ env.TEMPLATE-FILE }}
+        path: ${{ env.TEMPLATE-FILE-ACR }}
   
   deploy:
     runs-on: ubuntu-latest
@@ -67,8 +68,8 @@ jobs:
       - name: Download artifato app
         uses: actions/download-artifact@v3
         with:
-          name: artefato1-app
-          path: dist
+          name: artefato-app
+          path: artefato-app
 
       - name: Azure Login
         uses: azure/login@v1
