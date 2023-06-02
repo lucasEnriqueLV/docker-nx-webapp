@@ -1,5 +1,7 @@
 param webAppName string = uniqueString(resourceGroup().id)
-param sku string = 'F1' 
+param sku string = 'F1'
+param dockerImage string
+param acrname string
 param location string = resourceGroup().location
 
 var appServicePlanName = toLower('AppServicePlan-${webAppName}')
@@ -12,16 +14,27 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
   sku: {
     name: sku
   }
-  kind: 'app'
+  kind: 'linux'
 }
 resource appService 'Microsoft.Web/sites@2020-06-01' = {
   name: webAppName
-  kind: 'app'
   location: location
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      linuxFxVersion: 'DOTNETCORE|6.0'
+       appSettings: [ {
+          name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
+          value: containerRegistry.listCredentials().passwords[0].value
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_URL'
+          value: '${acrname}.azurecr.io'
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_USERNAME'
+          value: containerRegistry.listCredentials().username
+        }]
+      linuxFxVersion: 'DOCKER|${imgname}'
     }
   }
 }
