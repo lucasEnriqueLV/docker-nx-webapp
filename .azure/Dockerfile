@@ -1,8 +1,8 @@
 # Stage 1: Build
 FROM node:12.7-alpine as build
 
-WORKDIR /usr/local/app
-COPY ./../ /usr/local/app/
+WORKDIR /usr/src/app/
+COPY ./../ /usr/src/app/
 RUN npm install
 RUN npm run build
 
