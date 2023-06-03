@@ -107,7 +107,7 @@ jobs:
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          template: bicep-template/template.bicep
+          template: artefato-app/template.bicep
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }} dockerImage=${{ env.DOCKERIMAGE }}'
           failOnStdErr: false 
             
