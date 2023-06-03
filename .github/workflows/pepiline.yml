@@ -76,15 +76,6 @@ jobs:
         with:
           creds: ${{ secrets.PROJETO_TCC_SECRETS}}
 
-      # - name: deploy
-      #   uses: azure/arm-deploy@v1
-      #   with:
-      #     subscriptionId: ${{ env.SUBSCRIPTION-ID }}
-      #     resourceGroupName: ${{ env.RESOURCE-GROUP }}
-      #     template: bicep-template/template.bicep
-      #     parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
-      #     failOnStdErr: false 
-
       - name: deploy
         uses: azure/arm-deploy@v1
         with:
@@ -99,16 +90,25 @@ jobs:
         with:
     # Specify the Az PowerShell script here.
           inlineScript: |
-            az acr login --name acrd4etdvvsgalrs |
-            az acr show --name acrd4etdvvsgalrs --query loginServer --output table --subscription  ${{ env.SUBSCRIPTION-ID }}
+            az acr login --name acrprojetoufam |
+            az acr show --name acrprojetoufam --query loginServer --output table --subscription  ${{ env.SUBSCRIPTION-ID }}
           azPSVersion: "latest"
           
       - name: Build the frontend image and push it to ACR
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: acrd4etdvvsgalrs.azurecr.io/teste:${{ github.sha }}
-          file: ./Dockerfile
+          tags: acrprojetoufam.azurecr.io/teste:latest
+          file: .azure/Dockerfile
+
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ env.SUBSCRIPTION-ID }}
+          resourceGroupName: ${{ env.RESOURCE-GROUP }}
+          template: bicep-template/template.bicep
+          parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+          failOnStdErr: false 
             
 
       # - name: Publish Website to WebApp

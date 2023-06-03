@@ -1,7 +1,7 @@
 param webAppName string = uniqueString(resourceGroup().id)
 param sku string = 'F1'
-param dockerImage string
-param acrname string
+param dockerImage string = 'teste:latest'
+param acrname string = 'acrprojetoufam'
 param location string = resourceGroup().location
 
 var appServicePlanName = toLower('AppServicePlan-${webAppName}')
