@@ -2,7 +2,7 @@
 FROM node:12.7-alpine as build
 
 WORKDIR /usr/src/app
-COPY ./ /usr/src/app/
+COPY ./ /usr/src/app
 RUN npm install
 RUN npm run build
 
