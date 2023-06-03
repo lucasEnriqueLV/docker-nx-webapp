@@ -76,7 +76,7 @@ jobs:
         with:
           creds: ${{ secrets.PROJETO_TCC_SECRETS}}
 
-      - name: deploy
+      - name: deploy acr
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
