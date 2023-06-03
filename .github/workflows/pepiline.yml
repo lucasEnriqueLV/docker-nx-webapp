@@ -33,11 +33,11 @@ jobs:
     - name: Instalando Dependencias
       run: pnpm install
       
-#     - name: Buildando projeto
-#       run: pnpm run build:all
+    - name: Buildando projeto
+      run: pnpm run build:all
       
-#     - name: Publicando o projeto
-#       run: pnpm -r publish --no-git-checks
+    - name: Publicando o projeto
+      run: pnpm -r publish --no-git-checks
       
     - name: artefato webapp
       uses: actions/upload-artifact@v2
