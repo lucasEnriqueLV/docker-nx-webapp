@@ -1,8 +1,13 @@
 param webAppName string = uniqueString(resourceGroup().id)
 param sku string = 'F1'
-param dockerImage string = 'teste:latest'
 param acrname string = 'acrprojetoufam'
 param location string = resourceGroup().location
+param dockerImage string
+param imgname string = '${acrname}.azurecr.io/${dockerImage}'
+
+resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-09-01' existing = {
+  name: acrname
+}
 
 var appServicePlanName = toLower('AppServicePlan-${webAppName}')
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
