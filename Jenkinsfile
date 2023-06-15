@@ -1,7 +1,6 @@
 pipeline {
 	agent { dockerfile true }
 	options { ansiColor('xterm') }
-	
 	stages {
 		stage("build dependencies") {
 			steps {
