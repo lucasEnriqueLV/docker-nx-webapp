@@ -3,7 +3,7 @@ name: Pipeline CI/CD - push para o origin
 on:
   push:
     branches:
-      'master'
+      'test'
 env:
   RESOURCE-GROUP: RGPROJETOTCC2023
   LOCATION: eastus2
