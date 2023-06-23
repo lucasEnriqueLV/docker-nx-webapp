@@ -3,14 +3,14 @@ name: Pipeline CI/CD - push para o origin
 on:
   push:
     branches:
-      'master'
+      'test'
 env:
   RESOURCE-GROUP: RGPROJETOTCC2023
   LOCATION: eastus2
   TEMPLATE-FILE: .azure/template.bicep
   TEMPLATE-FILE-ACR: .azure/acr_project.bicep
   SUBSCRIPTION-ID: 9157087b-28a6-4c6b-a615-c827504e377a
-  WEBAPP-NAME: projeto-tcc-2023
+  WEBAPP-NAME: projeto-dev-tcc-2023
   DOCKERIMAGE: teste:latest
 
 jobs:
@@ -120,7 +120,7 @@ jobs:
       - name: Post request
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://6ff3-191-189-8-104.ngrok-free.app/generic-webhook-trigger/invoke?token=520c357e0ee6d1092489544d12b2f44b&apilink=projeto-tcc-2023.azurewebsites.net'
+          url: 'https://267a-191-189-8-104.ngrok-free.app/generic-webhook-trigger/invoke?token=520c357e0ee6d1092489544d12b2f44b&apilink=${{ env.WEBAPP-NAME }}.azurewebsites.net'
           method: 'POST'
           username: 'lucas'
           password: 'lucas'
