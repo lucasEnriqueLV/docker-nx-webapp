@@ -111,12 +111,20 @@ jobs:
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }} dockerImage=${{ env.DOCKERIMAGE }}'
           failOnStdErr: false 
             
-
-      # - name: Publish Website to WebApp
-      #   uses: Azure/webapps-deploy@v2
-      #   with:
-      #     app-name: ${{ env.WEBAPP-NAME  }}
-      #     package: artefato1-app  
+  testeCarga:
+    name: Realizando teste carga
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Post request
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://6ff3-191-189-8-104.ngrok-free.app/generic-webhook-trigger/invoke?token=520c357e0ee6d1092489544d12b2f44b&apilink=google.com'
+          method: 'POST'
+          username: 'lucas'
+          password: 'lucas'
+          customHeaders: '{"Content-Type": "application/json"}'
+    
                 
 
         
