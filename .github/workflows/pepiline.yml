@@ -15,7 +15,7 @@ env:
 
 jobs:
   setup:
-    name: Testando aplicação e criando artefato
+    name: Testando aplicação e criando artefato1
     runs-on: ubuntu-latest   
     steps:
     - name: Checando repositorio
